@@ -23,3 +23,32 @@ let mostPopularFood = [
 // After all the foods have been logged, the program should end.
 //
 // HINT: You'll need to use `setInterval` and `clearInterval`.
+
+// let countdown = setInterval(function rankFoods() {
+//   let newList = mostPopularFood.reverse();
+//   console.log(newList);
+//     for(let i=0; i < newList.length;i++){
+//       // console.log(newList.length - i);
+//       console.log(`Rank ${newList.length - i} is ${newList[i]}`);
+//     }
+//   //clear the timeout
+//   clearInterval(countdown);
+// },1000)
+
+let newList = mostPopularFood.reverse();
+//console.log(newList);
+
+let countdown = setInterval(function rankFoods() {
+  let a = 0;
+  let count = newList.length;
+  console.log(`Rank ${10-a} is ${newList[a]}`);
+  // newList.pop();
+  a = a +1;
+  // console.log(a);
+
+  //clear the timeout
+  if(a == 10){
+    clearInterval(countdown);
+  }
+  
+},1000)
