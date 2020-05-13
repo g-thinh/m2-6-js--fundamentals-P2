@@ -19,6 +19,21 @@
 // A) console.log() your object.
 // B) console.log() a few of the values in the object.
 
+let myObject = {
+    name: {
+        first: 'Thinh',
+        last: 'Nguyen',
+    },
+    age: '24',
+    city: 'Montreal',
+    siblings: 1,
+    petName: 'Otis',
+    monthOfBirth: 'July'
+}
+
+console.log(myObject);
+console.log(myObject.name);
+
 //-------------------------------------------------
 
 // Exercise A
@@ -31,6 +46,11 @@
 //     - Pets (number of pets, names of pets, etc.)
 
 // HINT: You can just modify the object that you created before.
+
+myObject.Job = 'Analyst';
+myObject.FavoriteFood = 'Pizza';
+myObject.Height = '175 cm';
+console.log(myObject);
 
 //-------------------------------------------------
 
@@ -47,7 +67,18 @@
 // HINT: Most movies have multiple actors. What data-structure do we use to
 // represent a collection of similar things?
 
-let favoriteMovie = {};
+let favoriteMovie = {
+  actors: [    
+    'Matt Damon',
+    'Jessica Chastain',
+    'Kristen Wiig'],
+    director: 'Ridley Scott',
+    title: 'The Martian' 
+  }
+
+  console.log(favoriteMovie);
+
+
 
 //-------------------------------------------------
 
@@ -62,8 +93,9 @@ const person = {
   hometown: 'somewhere',
 };
 
-person[age]; // => 26
-person.key; // => "Alyssa P. Hacker"
+console.log(person.age); // => 26
+console.log(person.name); // => "Alyssa P. Hacker".
+console.log(person['name']);
 
 //-------------------------------------------------
 
@@ -85,7 +117,7 @@ const alyssa = {
 };
 
 function fullName(person) {
-  // Your code here
+  return (`${person.name.first} ${person.name.middle} ${person.name.last}`);
 }
 
 console.log(fullName(alyssa)); // => "Alyssa P. Hacker"
@@ -109,7 +141,9 @@ const rick = {
 };
 
 function betterFullName(person) {
-  // Your code here
+  let nameArray = [person.name.first, person.name.middle, person.name.last];
+  nameArray = nameArray.filter((name) => typeof(name) === 'string');
+  return nameArray.join(' ');
 }
 
 console.log(betterFullName(rick)); // => "Rick Sanchez"

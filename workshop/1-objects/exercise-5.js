@@ -16,6 +16,9 @@ const people = [
 // `name` key does not have the same "shape" as the ones above, make sure you
 // change it to look like these).
 
+people.push({ name: { first: 'Gia', middle: 'Thinh', last: 'Nguyen' }, age: 24});
+console.log(people);
+
 //-------------------------------------------------
 
 // Exercise 5.1
@@ -23,7 +26,12 @@ const people = [
 // Write a function that returns the average age of the `people` array.
 
 function avgAge(peopleArr) {
-  // Yuor code here
+  let age = 0;
+  peopleArr.forEach(person =>{
+    //console.log(person.age);
+    age += person.age;
+  })
+  return Math.round(age / peopleArr.length);
 }
 
 console.log(`Average age is ${avgAge(people)}.`);
@@ -37,8 +45,16 @@ console.log(`Average age is ${avgAge(people)}.`);
 // Can you make use of your `fullName` function here?
 
 function fullName(peopleArr) {
-  // Your code here
+  peopleArr.forEach(person => {
+    // console.log(`${person.name.first} ${person.name.middle} ${person.name.last} `);
+
+    let nameArray = [person.name.first, person.name.middle, person.name.last];
+    nameArray = nameArray.filter((name) => typeof(name) === 'string');
+    let fullNames = nameArray.join(' ');
+    console.log(fullNames);
+  })
 }
+
 
 console.log(fullName(people));
 
@@ -50,7 +66,7 @@ console.log(fullName(people));
 // returns an array of just the people that are older than the specified age..
 
 function olderPeople(peopleArr, age) {
-  // Your code here
+  return peopleArr.filter(person => person.age > age);
 }
 
 console.log(olderPeople(people, 26));
