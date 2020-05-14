@@ -20,17 +20,17 @@ let inputData = {
   motherAge: 35,
   motherStatus: 'worried',
   motherSuperpower1: null,
-  motherSuperpower1: null,
+  motherSuperpower2: null,
   bestFriendName: 'Mike Wheeler',
   bestFriendAge: 9,
   bestFriendStatus: 'frenetic',
   bestFriendSuperpower1: null,
-  bestFriendSuperpower1: null,
+  bestFriendSuperpower2: null,
   girlfriendName: 'Eleven',
   girlfriendAge: 9,
   girlfriendStatus: 'angry',
   girlfriendSuperpower1: 'telepathy',
-  girlfriendSuperpower1: 'multiverse portal sealing',
+  girlfriendSuperpower2: 'multiverse portal sealing',
 };
 
 /*
@@ -88,7 +88,79 @@ For example, the main superpowers array should be:
 */
 
 function transformData(data) {
-  // Your code here
+  let newData = {
+    name: data.name,
+    age: data.age,
+    status: data.status,
+    address: {
+      streetAddress: data.address,
+      city: data.addressCity,
+      state: data.addressState,
+      country: data.addressCountry,
+    },
+  }
+
+  //create an array of powers
+  // let powers = [data.superpower1, data.superpower2];
+  
+  //filter the array for undefined
+  //let newPowers = powers.filter(power => typeof(power) == 'string');
+  // console.log(newPowers);
+
+  //add the new superpowers array to the data
+  // newData.superpowers = newPowers;
+  newData.superpowers = filterPowers(data.superpower1, data.superpower2);
+
+  momPowers = data.motherSuperpower1;
+  console.log(filterPowers(momPowers));
+  let mother = {
+    type: 'mother',
+    name: data.motherName,
+    age: data.motherAge,
+    status: data.motherStatus,
+    superpowers: filterPowers(data.motherSuperpower1,data.motherSuperpower2),
+  }
+  let bestfriend = {
+    type: 'best friend',
+    name: data.bestFriendName,
+    age: data.bestFriendAge,
+    status: data.bestFriendStatus,
+    superpowers: filterPowers(data.bestFriendSuperpower1,data.bestFriendSuperpower2),
+  }
+  let girlfriend = {
+    type: 'girlfriend',
+    name: data.girlfriendName,
+    age: data.girlfriendAge,
+    status: data.girlfriendStatus,
+    superpowers: filterPowers(data.girlfriendSuperpower1,data.girlfriendSuperpower2),
+  }
+
+  newData.relationships = [mother,bestfriend,girlfriend];
+  // return newData.superpowers;
+  return newData;
+}
+
+
+function filterPowers(power1,power2) {
+  //let newPowers = powers.filter(power => typeof(power) == 'string');
+  //because the powers are always in an array, we can use this
+  let newPowers = [];
+
+  //cant use this because array is null
+  // powers.forEach(power => {
+  //   if(power) {
+  //     newPowers.push(power);
+  //   }
+  // })
+
+  if(typeof(power1) == 'string') { 
+    newPowers.push(power1);
+  }
+  if(typeof(power2) == 'string') { 
+    newPowers.push(power2);
+  }
+
+  return newPowers
 }
 
 /*
