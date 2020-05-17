@@ -31,7 +31,7 @@ const favouriteDessertsGroupB = {
   colin: 'gummy bears',
   damien: 'child tears',
   ellicia: 'panda express',
-  fertrude: 'gummy bears'.
+  fertrude: 'gummy bears',
   glinda: 'pie',
   hethel: 'not applicable',
   irsula: 'rum cake',
@@ -54,8 +54,66 @@ const favouriteDessertsGroupB = {
 // - Second, put them in order
 
 function sortDessertsByPopularity(dessertObject) {
-  // Write code
+  let foodArray = Object.values(favouriteDessertsGroupB);
+
+  let count = {};
+
+  //for each desert, if there is a duplicate, count it and add 1
+  //add 1 by default because there should be at least one occurence of that item
+  foodArray.forEach(dessert => {
+    count[dessert] = (count[dessert] || 0) + 1;
+  })
+
+  
+  console.log(count);
+  // count returns
+  // {
+  //   pie: 3,
+  //   'deep-fried mars bar': 1,
+  //   'gummy bears': 2,
+  //   'child tears': 1,
+  //   'panda express': 1,
+  //   'not applicable': 1,
+  //   'rum cake': 1,
+  //   'revenge (served cold)': 1,
+  //   'easter eggs': 1,
+  //   dessert: 1
+  // }
+
+  //now sort the new count object by keys
+  return Object.keys(count).sort((a,b) => {
+    let countA = count[a];
+    let countB = count[b];
+    // (countA < countB) ? 1 : -1;
+    if(countA < countB) {
+      return 1;
+    } else {
+      return -1;
+    }
+  })
+  // console.log(dessertRanked);
+  // return dessertRanked;
+
+  //THIS STUFF DIDNT WORK
+  
+  //now from the above count, we will create an array that has each element take
+  //the format [(dessert, count)];
+
+  // let dessertArray =[];
+  // console.log(Object.keys(count));
+
+  // Object.keys(count).forEach(key => {
+  //   dessertArray.push([key, count[key]]);
+  // })
+
+  // console.log(dessertArray);
+  // console.log(count);
+
+
+  
+  // return count;
 }
+// sortDessertsByPopularity(favouriteDessertsGroupB);
 
 console.log(
   'Popular desserts in Group B:',
@@ -96,6 +154,26 @@ order, and that's 100% OK).
 */
 
 function groupPeopleByDessert(dessertObject) {
+let result = {};
+
+Object.values(dessertObject).forEach(dessert => {
+  //new object, every value is a dessert, with an empty array
+  result[dessert] = [];
+})
+
+console.log(result);
+
+//now to fill in the people who like the dessert in the empty key arrays
+//Object.entries() returns key value pairs
+Object.entries(dessertObject).forEach(entry => {
+  //put name and dessert together in an array
+  let [name,dessert] = entry;
+
+  //now we can reference each dessert in the result object and insert a name
+  result[dessert].push(name);
+}) 
+
+return result;
 
 }
 
